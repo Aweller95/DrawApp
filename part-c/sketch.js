@@ -37,6 +37,7 @@ function reset() {
   document.getElementById('red').textContent = r;
   document.getElementById('green').textContent = g;
   document.getElementById('blue').textContent = b;
+  document.getElementById('colIndicator').style.background = getCurrentColour();
 }
 
 // initialises canvas
