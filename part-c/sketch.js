@@ -15,14 +15,18 @@ addBrush.onclick = plusBrush;
 
 // reduce brush size
 function minusBrush() {
-  brushSize -= 1;
-  document.getElementById('brushSizeVal').textContent = brushSize
+  if(brushSize){
+    brushSize -= 1;
+    document.getElementById('brushSizeVal').textContent = brushSize
+  }
 }
 
 // increase brush size
 function plusBrush() {
-  brushSize += 1;
-  document.getElementById('brushSizeVal').textContent = brushSize
+  if(brushSize < 200){
+    brushSize += 1;
+    document.getElementById('brushSizeVal').textContent = brushSize
+  }
 }
 
 // Reset color button
