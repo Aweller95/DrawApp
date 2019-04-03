@@ -58,11 +58,6 @@ function squareBrush() {
   rect(mouseX, mouseY, brushSize, brushSize);
 }
 
-// Toolbar buttons - Needs to be removed, these are not doing anything (we think).
-resetButton.onclick = reset;
-subtractBrush.onclick = minusBrush;
-addBrush.onclick = plusBrush;
-
 //Save canvas as .jpg
 saveCanvas("DrawApp", ".jpg"); //this func is currently not accepting these params - outputs as untitled.png
 
