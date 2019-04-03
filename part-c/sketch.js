@@ -12,9 +12,51 @@ resetButton.onclick = reset;
 var subtractBrush = document.getElementById('subtract');
 var addBrush = document.getElementById('add');
 
+var brushes = {
+  circle: {
+    draw (){ 
+      ellipse(mouseX, mouseY, brushSize, brushSize)
+    }
+  },
+  square: {
+    draw(){
+      rect (mouseX, mouseY, brushSize, brushSize)
+    }
+  },
+  triangle: {
+    draw(){
+      triangle(
+        mouseX + 0,
+        mouseY - brushSize,
+    
+        mouseX - brushSize*Math.cos(30*Math.PI/180),
+        mouseY + brushSize*Math.sin(30*Math.PI/180),
+    
+        mouseX + brushSize*Math.cos(30*Math.PI/180),
+        mouseY + brushSize*Math.sin(30*Math.PI/180)
+        )
+    }
+  }
+  sprayPaint: {
+    draw(){
+      ellipse(mouseX, mouseY, brushSize, brushSize)
+    }
+  }
+
+
+  
+};
+
+squareBrush.onclick = squareBrush;
+triangleBrush.onclick = triangleBrush
+
+
 subtractBrush.onclick = minusBrush;
 addBrush.onclick = plusBrush;
 
+function squareBrush( ){
+  rect (mouseX, mouseY, brushSize, brushSize)
+}
 
 function minusBrush() {
   brushSize -= 1;
