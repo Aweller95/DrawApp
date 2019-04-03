@@ -32,6 +32,13 @@ var posHistory = {
     return Math.round(this.getTravelDistance() / this.records.length)
   }
 }
+//toggle velocity scaling
+var velocityScaling = false;
+function keyPressed(){
+  if(keyCode === 83){
+    velocityScaling = !velocityScaling;
+  }
+}
 
 function selectBrush(brushName) {
   currentBrush = brushName;
@@ -138,7 +145,9 @@ function draw() {
 
   fill(r, g, b);
   if (mouseIsPressed) {
-    brushes[currentBrush].draw(brushSize * scaleFactor);
+    velocityScaling ?
+      brushes[currentBrush].draw(brushSize * scaleFactor) :
+      brushes[currentBrush].draw();
   }
 
   if (keyIsPressed) {
