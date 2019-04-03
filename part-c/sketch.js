@@ -5,12 +5,39 @@ var b = 0;
 var brushSize = 30;
 var currentBrush = "circle";
 
+//position tracking
+var posHistory = {
+  maxRecords: 30,
+  records: [],
+  addPos(x, y){
+    this.records.unshift({x: Math.round(x), y: Math.round(y)});
+    if(this.records.length > this.maxRecords){
+      this.records.pop();
+    }
+  },
+  getDistBetweenTwoCoords(posA, posB){
+    var horizontalDist = posB.x - posA.x;
+    var verticalDist =  posB.y - posA.y;
+    distance = Math.sqrt(horizontalDist**2 + verticalDist**2);
+    return distance
+  },
+  getTravelDistance(){
+    var total = 0;
+    for(let i = 1; i < this.records.length; i++){
+      total += this.getDistBetweenTwoCoords(this.records[i], this.records[i - 1]);
+    }
+    return total;
+  },
+  getSpeed(){
+    return Math.round(this.getTravelDistance() / this.records.length)
+  }
+}
+
 function selectBrush(brushName) {
   currentBrush = brushName;
 }
 
 var brushes = {
-
   select(brushName) {
     currentBrush = brushName;
   },
@@ -18,13 +45,13 @@ var brushes = {
   circle: {
     draw() {
       ellipse(mouseX, mouseY, brushSize, brushSize);
-    },
+    }
   },
 
   square: {
     draw() {
       rect(mouseX, mouseY, brushSize, brushSize);
-    },
+    }
   },
   triangle: {
     draw() {
@@ -39,7 +66,7 @@ var brushes = {
         mouseX + distToCorner * Math.cos((30 * Math.PI) / 180),
         mouseY + distToCorner * Math.sin((30 * Math.PI) / 180)
       );
-    },
+    }
   },
   sprayPaint: {
     draw() {
@@ -104,8 +131,12 @@ function getCurrentColour() {
 
 //draw function
 function draw() {
+
+  posHistory.addPos(mouseX, mouseY);
+
   fill(r, g, b);
   if (mouseIsPressed) {
+    console.log(posHistory.getSpeed());
     brushes[currentBrush].draw();
   }
 
