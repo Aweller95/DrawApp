@@ -9,27 +9,22 @@ var resetButton = document.getElementById("reset");
 var subtractBrush = document.getElementById("subtract");
 var addBrush = document.getElementById("add");
 
-function selectBrush(brushName) {
-  currentBrush = brushName;
-}
-
 var brushes = {
+
+  select(brushName) {
+    currentBrush = brushName;
+  },
+
   circle: {
     draw() {
       ellipse(mouseX, mouseY, brushSize, brushSize);
     },
-    select() {
-      selectBrush("circle");
-    }
   },
 
   square: {
     draw() {
       rect(mouseX, mouseY, brushSize, brushSize);
     },
-    select() {
-      selectBrush("square");
-    }
   },
   triangle: {
     draw() {
@@ -44,9 +39,6 @@ var brushes = {
         mouseY + brushSize * Math.sin((30 * Math.PI) / 180)
       );
     },
-    select() {
-      selectBrush("triangle");
-    }
   },
   sprayPaint: {
     draw() {
