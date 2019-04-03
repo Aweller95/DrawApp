@@ -1,6 +1,4 @@
 const defaultBGCol = 0;
-
-
 var r = 0;
 var g = 0;
 var b = 0;
@@ -8,8 +6,6 @@ var brushSize = 30;
 var currentBrush = 'circle';
 
 var resetButton = document.getElementById('reset');
-resetButton.onclick = reset;
-
 var subtractBrush = document.getElementById('subtract');
 var addBrush = document.getElementById('add');
 
@@ -74,16 +70,33 @@ function squareBrush() {
   rect(mouseX, mouseY, brushSize, brushSize)
 }
 
+// Toolbar buttons - Needs to be removed, these are not doing anything (we think).
+resetButton.onclick = reset;
+subtractBrush.onclick = minusBrush;
+addBrush.onclick = plusBrush;
+
+//Save canvas as .jpg
+saveCanvas('DrawApp', '.jpg') //this func is currently not accepting these params - outputs as untitled.png
+
+//brush size tools
+
+// reduce brush size
 function minusBrush() {
-  brushSize -= 1;
-  document.getElementById('brushSizeVal').textContent = brushSize
+  if(brushSize){
+    brushSize -= 1;
+    document.getElementById('brushSizeVal').textContent = brushSize
+  }
 }
 
+// increase brush size
 function plusBrush() {
-  brushSize += 1;
-  document.getElementById('brushSizeVal').textContent = brushSize
+  if(brushSize < 200){
+    brushSize += 1;
+    document.getElementById('brushSizeVal').textContent = brushSize
+  }
 }
 
+// Reset color button
 function reset() {
   r = 0;
   g = 0;
@@ -91,18 +104,22 @@ function reset() {
   document.getElementById('red').textContent = r;
   document.getElementById('green').textContent = g;
   document.getElementById('blue').textContent = b;
+  document.getElementById('colIndicator').style.background = getCurrentColour();
 }
 
+// initialises canvas
 function setup() {
   createCanvas(windowWidth, windowHeight)
   background(defaultBGCol)
   document.getElementById('colIndicator').style.background = getCurrentColour();
 }
 
+//current selected color
 function getCurrentColour() {
   return (`rgb(${r}, ${g}, ${b})`);
 }
 
+//draw function
 function draw() {
 
   fill(r, g, b)
@@ -114,12 +131,16 @@ function draw() {
     document.getElementById('colIndicator').style.background = getCurrentColour();
     switch (key) {
       // RGB to add more of that colour, EFV to subtract
+
+      // Increase Red
       case 'r':
         if (r < 255) {
           r++;
           document.getElementById('red').textContent = r;
         }
         break;
+
+      // Reduce Red
       case 'e':
         if (r) {
           r--;
@@ -127,26 +148,31 @@ function draw() {
         }
         break;
 
+      //Increase Green
       case 'g':
         if (g < 255) {
           g++;
           document.getElementById('green').textContent = g;
         }
         break;
-      case 'f':
+
+        // Reduce Green
+        case 'f':
         if (g) {
           g--;
           document.getElementById('green').textContent = g;
         }
         break;
 
-
+      //Increase Blue
       case 'b':
         if (b < 255) {
           b++;
           document.getElementById('blue').textContent = b;
         }
         break;
+
+      // Reduce Blue
       case 'v':
         if (b < 255) {
           b--;
@@ -155,12 +181,18 @@ function draw() {
         break;
 
       // I don't know how modifier keys work. Probably best not to use them anyway
+
+      // Increase brush size
       case '=':
         plusBrush();
         break;
-      case '-':
+
+      // Reduce brush size
+        case '-':
         minusBrush();
         break;
+
+      // Test key
       case 'q':
         background(0, 0, 0, 10)
         break;
@@ -170,6 +202,7 @@ function draw() {
   }
 }
 
+// Resizes canvas to the size of users window.
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   background(0);

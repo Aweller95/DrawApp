@@ -1,20 +1,38 @@
 body {
     margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
-.margin-1 {
+.toolbar {
+    position:relative;
     margin: 1rem;
 }
 
-.margin-1 p {
+.toolbar p {
     display: inline-block;
 }
 
 #colIndicator {
-    height: 20px;
-    width: 20px;
-    display: inline-block;
-    border: 1px solid black;
+    height: 5px;
+    width:100%;
+    position:absolute;
+    top: 35px;
+    border: 1px solid rgb(216, 216, 216);
+    transition: height .15s;    
+}
+
+#colSelector p {
+    width:35px;
+}
+
+#colSelector p:nth-child(3){
+    width: 50px;
+}
+
+
+
+.toolbar:hover #colIndicator {
+    height: 10px;
 }
 
 .redCol {
@@ -30,5 +48,8 @@ body {
 }
 
 .tool {
-    border: 1px solid black;
+    position:relative;
+    display: inline-block;
+    min-width: 50px;
+    margin-left: 1rem;
 }
