@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="style.css">
+  <title>Part C - Intro to P5</title>
+</head>
+
+<body>
+  
+  <div>
+    <span class="redCol keyPress">Red:<p id="red">0</p></span> 
+    <span class="greenCol keyPress">Green: <p id="green">0</p></span>
+    <span class="blueCol keyPress">Blue: <p id="blue">0</p></span>
+
+    <button id="reset">Reset</button>
+    <button onclick="background(defaultBGCol)">Clean canvas</button>
+
+    <div class="tool">
+      <h5>Brush Size</h5>
+      <span><p id="brushSizeVal">30</p></span>
+      <button id="add">+</button>
+      <button id="subtract">-</button>
+    </div>
+
+  </div>  
+
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/p5.js"></script>
+<script src="sketch.js"></script>
+</html>
