@@ -10,39 +10,36 @@ function selectBrush(brushName) {
 }
 
 var brushes = {
+
+  select(brushName) {
+    currentBrush = brushName;
+  },
+
   circle: {
     draw() {
       ellipse(mouseX, mouseY, brushSize, brushSize);
     },
-    select() {
-      selectBrush("circle");
-    }
   },
 
   square: {
     draw() {
       rect(mouseX, mouseY, brushSize, brushSize);
     },
-    select() {
-      selectBrush("square");
-    }
   },
   triangle: {
     draw() {
+      var distToCorner = 0.6 * brushSize;
       triangle(
         mouseX + 0,
-        mouseY - brushSize,
+        mouseY - distToCorner,
 
-        mouseX - brushSize * Math.cos((30 * Math.PI) / 180),
-        mouseY + brushSize * Math.sin((30 * Math.PI) / 180),
+        mouseX - distToCorner * Math.cos((30 * Math.PI) / 180),
+        mouseY + distToCorner * Math.sin((30 * Math.PI) / 180),
 
-        mouseX + brushSize * Math.cos((30 * Math.PI) / 180),
-        mouseY + brushSize * Math.sin((30 * Math.PI) / 180)
+        mouseX + distToCorner * Math.cos((30 * Math.PI) / 180),
+        mouseY + distToCorner * Math.sin((30 * Math.PI) / 180)
       );
     },
-    select() {
-      selectBrush("triangle");
-    }
   },
   sprayPaint: {
     draw() {
