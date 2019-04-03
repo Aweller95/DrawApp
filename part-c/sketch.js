@@ -43,19 +43,19 @@ var brushes = {
   },
 
   circle: {
-    draw() {
-      ellipse(mouseX, mouseY, brushSize, brushSize);
+    draw(curBrushSize = brushSize) {
+      ellipse(mouseX, mouseY, curBrushSize, curBrushSize);
     }
   },
 
   square: {
-    draw() {
-      rect(mouseX, mouseY, brushSize, brushSize);
+    draw(curBrushSize = brushSize) {
+      rect(mouseX, mouseY, curBrushSize, curBrushSize);
     }
   },
   triangle: {
-    draw() {
-      var distToCorner = 0.6 * brushSize;
+    draw(curBrushSize = brushSize) {
+      var distToCorner = 0.6 * curBrushSize;
       triangle(
         mouseX + 0,
         mouseY - distToCorner,
@@ -132,12 +132,13 @@ function getCurrentColour() {
 //draw function
 function draw() {
 
+  // Record the mouse position, get the speed and calculate how much to reduce the brush size by
   posHistory.addPos(mouseX, mouseY);
+  var scaleFactor = 1 - Math.min(posHistory.getSpeed() * 0.25 / brushSize, 1);
 
   fill(r, g, b);
   if (mouseIsPressed) {
-    console.log(posHistory.getSpeed());
-    brushes[currentBrush].draw();
+    brushes[currentBrush].draw(brushSize * scaleFactor);
   }
 
   if (keyIsPressed) {
