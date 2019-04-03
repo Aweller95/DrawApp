@@ -170,7 +170,7 @@ function draw() {
 
       // Reduce Blue
       case "v":
-        if (b < 255) {
+        if (b) {
           b--;
           document.getElementById("blue").textContent = b;
         }
