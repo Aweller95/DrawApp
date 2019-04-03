@@ -5,6 +5,7 @@ var r = 0;
 var g = 0;
 var b = 0;
 var brushSize = 30;
+var currentBrush = 'circle';
 
 var resetButton = document.getElementById('reset');
 resetButton.onclick = reset;
@@ -12,39 +13,54 @@ resetButton.onclick = reset;
 var subtractBrush = document.getElementById('subtract');
 var addBrush = document.getElementById('add');
 
+function selectBrush(brushName) {
+  currentBrush = brushName;
+}
+
 var brushes = {
   circle: {
-    draw (){ 
+    draw() {
       ellipse(mouseX, mouseY, brushSize, brushSize)
+    },
+    select() {
+      selectBrush('circle');
     }
   },
+
   square: {
-    draw(){
-      rect (mouseX, mouseY, brushSize, brushSize)
+    draw() {
+      rect(mouseX, mouseY, brushSize, brushSize)
+    },
+    select() {
+      selectBrush('square');
     }
   },
   triangle: {
-    draw(){
+    draw() {
       triangle(
         mouseX + 0,
         mouseY - brushSize,
-    
-        mouseX - brushSize*Math.cos(30*Math.PI/180),
-        mouseY + brushSize*Math.sin(30*Math.PI/180),
-    
-        mouseX + brushSize*Math.cos(30*Math.PI/180),
-        mouseY + brushSize*Math.sin(30*Math.PI/180)
-        )
+
+        mouseX - brushSize * Math.cos(30 * Math.PI / 180),
+        mouseY + brushSize * Math.sin(30 * Math.PI / 180),
+
+        mouseX + brushSize * Math.cos(30 * Math.PI / 180),
+        mouseY + brushSize * Math.sin(30 * Math.PI / 180)
+      )
+    },
+    select() {
+      selectBrush('triangle');
     }
-  }
+  },
   sprayPaint: {
-    draw(){
+    draw() {
       ellipse(mouseX, mouseY, brushSize, brushSize)
     }
-  }
-
-
+  },
   
+
+
+
 };
 
 squareBrush.onclick = squareBrush;
@@ -54,8 +70,8 @@ triangleBrush.onclick = triangleBrush
 subtractBrush.onclick = minusBrush;
 addBrush.onclick = plusBrush;
 
-function squareBrush( ){
-  rect (mouseX, mouseY, brushSize, brushSize)
+function squareBrush() {
+  rect(mouseX, mouseY, brushSize, brushSize)
 }
 
 function minusBrush() {
@@ -84,19 +100,19 @@ function setup() {
 }
 
 function getCurrentColour() {
-  return(`rgb(${r}, ${g}, ${b})`);
+  return (`rgb(${r}, ${g}, ${b})`);
 }
 
 function draw() {
 
   fill(r, g, b)
-  if (mouseIsPressed){
-    ellipse(mouseX, mouseY, brushSize, brushSize)
+  if (mouseIsPressed) {
+    brushes[currentBrush].draw();
   }
 
-  if (keyIsPressed){
+  if (keyIsPressed) {
     document.getElementById('colIndicator').style.background = getCurrentColour();
-    switch(key) {
+    switch (key) {
       // RGB to add more of that colour, EFV to subtract
       case 'r':
         if (r < 255) {
