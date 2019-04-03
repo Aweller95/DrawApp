@@ -8,19 +8,25 @@
 
 <body>
   
-  <div class="margin-1">
-    <p class="redCol keyPress">Red: <span id="red">0</span></p> 
-    <p class="greenCol keyPress">Green: <span id="green">0</span></p>
-    <p class="blueCol keyPress">Blue: <span id="blue">0</span></p>
+  <div class="toolbar">
+    <div class="tool" id="colSelector">
+      <p class="redCol keyPress">Red: </p><p class="redCol" id="red">0</p> 
+      <p class="greenCol keyPress">Green: </p><p class="greenCol" id="green">0</p>
+      <p class="blueCol keyPress">Blue: </p><p class="blueCol" id="blue">0</p>
 
-    <div id="colIndicator"></div>
-
-    <button id="reset">Reset</button>
-    <button onclick="background(defaultBGCol)">Clean canvas</button>
+      <div id="colIndicator"></div>
+    </div>
+      
+    <div class="tool">
+      <button id="reset">Reset</button>
+    </div>
 
     <div class="tool">
-      <h5>Brush Size</h5>
-      <span><p id="brushSizeVal">30</p></span>
+      <button onclick="background(defaultBGCol)">Clean canvas</button>
+    </div>
+
+    <div class="tool">
+      <p>Brush Size: <span id="brushSizeVal">30</span></p>
       <button id="add">+</button>
       <button id="subtract">-</button>
     </div>
