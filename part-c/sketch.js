@@ -5,9 +5,9 @@ var b = 0;
 var brushSize = 30;
 var currentBrush = "circle";
 
-var resetButton = document.getElementById("reset");
-var subtractBrush = document.getElementById("subtract");
-var addBrush = document.getElementById("add");
+function selectBrush(brushName) {
+  currentBrush = brushName;
+}
 
 var brushes = {
 
@@ -163,7 +163,7 @@ function draw() {
 
       // Reduce Blue
       case "v":
-        if (b < 255) {
+        if (b) {
           b--;
           document.getElementById("blue").textContent = b;
         }

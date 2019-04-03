@@ -29,8 +29,6 @@ body {
     width: 50px;
 }
 
-
-
 .toolbar:hover #colIndicator {
     height: 10px;
 }
