@@ -25,6 +25,19 @@
       <button onclick="background(defaultBGCol)">Clean canvas</button>
     </div>
 
+    <button id="reset">Reset</button>
+    <button onclick="background(defaultBGCol)">Clean canvas</button>
+    <!--creates two buttons for the shape of the brush-->
+    
+    <div class="brush-shape">
+      <Label>Brush shapes</Label>
+      <button onclick="brushes.square.select()" id="square">■</button>
+      <button onclick="brushes.triangle.select()" id="triangle">▲</button>
+      <button onclick="brushes.circle.select()" id="circle">●</button>
+      <button id="spray-paint">Spray Paint</button>
+    </div>
+    <br>
+    
     <div class="tool">
       <button onclick="saveCanvas()">Save Canvas</button>
     </div>
@@ -34,6 +47,7 @@
       <button id="add">+</button>
       <button id="subtract">-</button>
     </div>
+    
 
   </div>  
 
