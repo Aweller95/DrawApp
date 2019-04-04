@@ -5,6 +5,12 @@ var b = 0;
 var brushSize = 30;
 var currentBrush = "circle";
 
+function randomColor(){
+  r = Math.floor(Math.random() * 255)
+  g = Math.floor(Math.random() * 255)
+  b = Math.floor(Math.random() * 255)
+}
+
 //position tracking
 var posHistory = {
   maxRecords: 30,
@@ -50,7 +56,6 @@ var brushes = {
   },
 
   circle: {
-
     draw(curBrushSize = brushSize) {
       ellipse(mouseX, mouseY, curBrushSize, curBrushSize);
     }
@@ -144,6 +149,7 @@ function getCurrentColour() {
 
 //draw function
 function draw() {
+
   fill(r, g, b);
   if (mouseIsPressed) {
     brushes[currentBrush].draw();
