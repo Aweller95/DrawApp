@@ -57,19 +57,22 @@ var brushes = {
 
   circle: {
     draw(curBrushSize = brushSize) {
-      ellipse(mouseX, mouseY, curBrushSize, curBrushSize);
+      // ellipse(mouseX, mouseY, curBrushSize, curBrushSize);
+      buffer.ellipse(mouseX, mouseY, curBrushSize, curBrushSize);
     }
   },
 
   square: {
     draw(curBrushSize = brushSize) {
-      rect(mouseX, mouseY, curBrushSize, curBrushSize);
+      // rect(mouseX, mouseY, curBrushSize, curBrushSize);
+      buffer.rect(mouseX, mouseY, curBrushSize, curBrushSize);
     }
   },
   triangle: {
     draw(curBrushSize = brushSize) {
       var distToCorner = 0.6 * curBrushSize;
-      triangle(
+      // triangle(
+      buffer.triangle(
         mouseX + 0,
         mouseY - distToCorner,
 
@@ -92,8 +95,8 @@ function squareBrush() {
   rect(mouseX, mouseY, brushSize, brushSize);
 }
 
-//Save canvas as .jpg
-saveCanvas("DrawApp", ".jpg"); //this func is currently not accepting these params - outputs as untitled.png
+//Save canvas as .jbuffer
+saveCanvas("DrawApp", ".jbuffer"); //this func is currently not accepting these params - outputs as untitled.png
 
 //brush size tools
 
@@ -127,8 +130,10 @@ function reset() {
 // initialises canvas
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background(defaultBGCol);
+  background(120);
   document.getElementById("colIndicator").style.background = getCurrentColour();
+  buffer = createGraphics(windowWidth, windowHeight);
+  buffer.background(0, 0, 0, 0);
 }
 
 function shapes_visibility(){
@@ -149,6 +154,9 @@ function getCurrentColour() {
 
 //draw function
 function draw() {
+  buffer.stroke(0);
+  buffer.fill(r, g, b);
+  image(buffer, 0, 0);
 
   fill(r, g, b);
   if (mouseIsPressed) {
