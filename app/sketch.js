@@ -248,7 +248,7 @@ function draw() {
         console.log(`You just pressed ${key}`);
     }
   }
-}
+}}
 
 // Resizes canvas to the size of users window.
 function windowResized() {
