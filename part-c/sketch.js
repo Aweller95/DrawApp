@@ -82,12 +82,6 @@ var brushes = {
   }
 };
 
-squareBrush.onclick = squareBrush;
-triangleBrush.onclick = triangleBrush;
-
-subtractBrush.onclick = minusBrush;
-addBrush.onclick = plusBrush;
-
 function squareBrush() {
   rect(mouseX, mouseY, brushSize, brushSize);
 }
