@@ -52,21 +52,21 @@ var brushes = {
   circle: {
     draw(curBrushSize = brushSize) {
       // ellipse(mouseX, mouseY, curBrushSize, curBrushSize);
-      pg.ellipse(mouseX, mouseY, curBrushSize, curBrushSize);
+      buffer.ellipse(mouseX, mouseY, curBrushSize, curBrushSize);
     }
   },
 
   square: {
     draw(curBrushSize = brushSize) {
       // rect(mouseX, mouseY, curBrushSize, curBrushSize);
-      pg.rect(mouseX, mouseY, curBrushSize, curBrushSize);
+      buffer.rect(mouseX, mouseY, curBrushSize, curBrushSize);
     }
   },
   triangle: {
     draw(curBrushSize = brushSize) {
       var distToCorner = 0.6 * curBrushSize;
       // triangle(
-      pg.triangle(
+      buffer.triangle(
         mouseX + 0,
         mouseY - distToCorner,
 
@@ -89,8 +89,8 @@ function squareBrush() {
   rect(mouseX, mouseY, brushSize, brushSize);
 }
 
-//Save canvas as .jpg
-saveCanvas("DrawApp", ".jpg"); //this func is currently not accepting these params - outputs as untitled.png
+//Save canvas as .jbuffer
+saveCanvas("DrawApp", ".jbuffer"); //this func is currently not accepting these params - outputs as untitled.png
 
 //brush size tools
 
@@ -124,10 +124,10 @@ function reset() {
 // initialises canvas
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background(defaultBGCol);
+  background(120);
   document.getElementById("colIndicator").style.background = getCurrentColour();
-  pg = createGraphics(windowWidth, windowHeight);
-  pg.background(0);
+  buffer = createGraphics(windowWidth, windowHeight);
+  buffer.background(0, 0, 0, 0);
 }
 
 //current selected color
@@ -137,9 +137,9 @@ function getCurrentColour() {
 
 //draw function
 function draw() {
-  pg.stroke(0);
-  pg.fill(r, g, b);
-  image(pg, 0, 0);
+  buffer.stroke(0);
+  buffer.fill(r, g, b);
+  image(buffer, 0, 0);
 
   // Record the mouse position, get the speed and calculate how much to reduce the brush size by
   posHistory.addPos(mouseX, mouseY);
