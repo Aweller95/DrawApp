@@ -5,6 +5,12 @@ var b = 0;
 var brushSize = 30;
 var currentBrush = "circle";
 
+function randomColor(){
+  r = Math.floor(Math.random() * 255)
+  g = Math.floor(Math.random() * 255)
+  b = Math.floor(Math.random() * 255)
+}
+
 //position tracking
 var posHistory = {
   maxRecords: 30,
@@ -130,6 +136,17 @@ function setup() {
   buffer.background(0, 0, 0, 0);
 }
 
+function shapes_visibility(){
+  var shapes = document.getElementsByClassName('shapes');
+  for(let i = 0; i < shapes.length; i++){
+    if(shapes[i].classList.contains('hidden')){
+      shapes[i].classList.remove('hidden');
+    } else {
+      shapes[i].classList.add('hidden');
+    }
+  }
+}
+
 //current selected color
 function getCurrentColour() {
   return `rgb(${r}, ${g}, ${b})`;
@@ -140,6 +157,10 @@ function draw() {
   buffer.stroke(0);
   buffer.fill(r, g, b);
   image(buffer, 0, 0);
+
+  fill(r, g, b);
+  if (mouseIsPressed) {
+    brushes[currentBrush].draw();
 
   // Record the mouse position, get the speed and calculate how much to reduce the brush size by
   posHistory.addPos(mouseX, mouseY);
