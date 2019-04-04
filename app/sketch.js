@@ -131,6 +131,17 @@ function setup() {
   document.getElementById("colIndicator").style.background = getCurrentColour();
 }
 
+function shapes_visibility(){
+  var shapes = document.getElementsByClassName('shapes');
+  for(let i = 0; i < shapes.length; i++){
+    if(shapes[i].classList.contains('hidden')){
+      shapes[i].classList.remove('hidden');
+    } else {
+      shapes[i].classList.add('hidden');
+    }
+  }
+}
+
 //current selected color
 function getCurrentColour() {
   return `rgb(${r}, ${g}, ${b})`;
@@ -138,6 +149,10 @@ function getCurrentColour() {
 
 //draw function
 function draw() {
+
+  fill(r, g, b);
+  if (mouseIsPressed) {
+    brushes[currentBrush].draw();
 
   // Record the mouse position, get the speed and calculate how much to reduce the brush size by
   posHistory.addPos(mouseX, mouseY);

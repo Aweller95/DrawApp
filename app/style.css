@@ -45,6 +45,10 @@ body {
     color: green;
 }
 
+.hidden {
+    display: none;
+}
+
 .tool {
     position:relative;
     display: inline-block;
