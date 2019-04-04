@@ -5,30 +5,65 @@ var b = 0;
 var brushSize = 30;
 var currentBrush = "circle";
 
+//position tracking
+var posHistory = {
+  maxRecords: 30,
+  records: [],
+  addPos(x, y){
+    this.records.unshift({x: Math.round(x), y: Math.round(y)});
+    if(this.records.length > this.maxRecords){
+      this.records.pop();
+    }
+  },
+  getDistBetweenTwoCoords(posA, posB){
+    var horizontalDist = posB.x - posA.x;
+    var verticalDist =  posB.y - posA.y;
+    distance = Math.sqrt(horizontalDist**2 + verticalDist**2);
+    return distance
+  },
+  getTravelDistance(){
+    var total = 0;
+    for(let i = 1; i < this.records.length; i++){
+      total += this.getDistBetweenTwoCoords(this.records[i], this.records[i - 1]);
+    }
+    return total;
+  },
+  getSpeed(){
+    return Math.round(this.getTravelDistance() / this.records.length)
+  }
+}
+//toggle velocity scaling
+var velocityScaling = false;
+function keyPressed(){
+  if(keyCode === 83){
+    velocityScaling = !velocityScaling;
+  }
+}
+
 function selectBrush(brushName) {
   currentBrush = brushName;
 }
 
 var brushes = {
-
   select(brushName) {
     currentBrush = brushName;
   },
 
   circle: {
-    draw() {
-      ellipse(mouseX, mouseY, brushSize, brushSize);
-    },
+
+    draw(curBrushSize = brushSize) {
+      ellipse(mouseX, mouseY, curBrushSize, curBrushSize);
+    }
   },
 
   square: {
-    draw() {
-      rect(mouseX, mouseY, brushSize, brushSize);
-    },
+    draw(curBrushSize = brushSize) {
+      rect(mouseX, mouseY, curBrushSize, curBrushSize);
+    }
   },
   triangle: {
-    draw() {
-      var distToCorner = 0.6 * brushSize;
+    draw(curBrushSize = brushSize) {
+      var distToCorner = 0.6 * curBrushSize;
       triangle(
         mouseX + 0,
         mouseY - distToCorner,
@@ -39,7 +74,7 @@ var brushes = {
         mouseX + distToCorner * Math.cos((30 * Math.PI) / 180),
         mouseY + distToCorner * Math.sin((30 * Math.PI) / 180)
       );
-    },
+    }
   },
   sprayPaint: {
     draw() {
@@ -47,12 +82,6 @@ var brushes = {
     }
   }
 };
-
-//squareBrush.onclick = squareBrush;
-//triangleBrush.onclick = triangleBrush;
-
-subtractBrush.onclick = minusBrush;
-addBrush.onclick = plusBrush;
 
 function squareBrush() {
   rect(mouseX, mouseY, brushSize, brushSize);
@@ -108,7 +137,6 @@ function shapes_visibility(){
   }
 }
 
-
 //current selected color
 function getCurrentColour() {
   return `rgb(${r}, ${g}, ${b})`;
@@ -119,6 +147,16 @@ function draw() {
   fill(r, g, b);
   if (mouseIsPressed) {
     brushes[currentBrush].draw();
+
+  // Record the mouse position, get the speed and calculate how much to reduce the brush size by
+  posHistory.addPos(mouseX, mouseY);
+  var scaleFactor = 1 - Math.min(posHistory.getSpeed() * 0.25 / brushSize, 1);
+
+  fill(r, g, b);
+  if (mouseIsPressed) {
+    velocityScaling ?
+      brushes[currentBrush].draw(brushSize * scaleFactor) :
+      brushes[currentBrush].draw();
   }
 
   if (keyIsPressed) {
