@@ -51,19 +51,22 @@ var brushes = {
 
   circle: {
     draw(curBrushSize = brushSize) {
-      ellipse(mouseX, mouseY, curBrushSize, curBrushSize);
+      // ellipse(mouseX, mouseY, curBrushSize, curBrushSize);
+      pg.ellipse(mouseX, mouseY, curBrushSize, curBrushSize);
     }
   },
 
   square: {
     draw(curBrushSize = brushSize) {
-      rect(mouseX, mouseY, curBrushSize, curBrushSize);
+      // rect(mouseX, mouseY, curBrushSize, curBrushSize);
+      pg.rect(mouseX, mouseY, curBrushSize, curBrushSize);
     }
   },
   triangle: {
     draw(curBrushSize = brushSize) {
       var distToCorner = 0.6 * curBrushSize;
-      triangle(
+      // triangle(
+      pg.triangle(
         mouseX + 0,
         mouseY - distToCorner,
 
@@ -123,6 +126,8 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   background(defaultBGCol);
   document.getElementById("colIndicator").style.background = getCurrentColour();
+  pg = createGraphics(windowWidth, windowHeight);
+  pg.background(0);
 }
 
 //current selected color
@@ -132,6 +137,9 @@ function getCurrentColour() {
 
 //draw function
 function draw() {
+  pg.stroke(0);
+  pg.fill(r, g, b);
+  image(pg, 0, 0);
 
   // Record the mouse position, get the speed and calculate how much to reduce the brush size by
   posHistory.addPos(mouseX, mouseY);
