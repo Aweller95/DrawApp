@@ -48,8 +48,8 @@ var brushes = {
   }
 };
 
-squareBrush.onclick = squareBrush;
-triangleBrush.onclick = triangleBrush;
+//squareBrush.onclick = squareBrush;
+//triangleBrush.onclick = triangleBrush;
 
 subtractBrush.onclick = minusBrush;
 addBrush.onclick = plusBrush;
@@ -96,6 +96,18 @@ function setup() {
   background(defaultBGCol);
   document.getElementById("colIndicator").style.background = getCurrentColour();
 }
+
+function shapes_visibility(){
+  var shapes = document.getElementsByClassName('shapes');
+  for(let i = 0; i < shapes.length; i++){
+    if(shapes[i].classList.contains('hidden')){
+      shapes[i].classList.remove('hidden');
+    } else {
+      shapes[i].classList.add('hidden');
+    }
+  }
+}
+
 
 //current selected color
 function getCurrentColour() {
