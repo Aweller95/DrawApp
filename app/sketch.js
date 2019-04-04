@@ -5,6 +5,27 @@ var b = 0;
 var brushSize = 30;
 var currentBrush = "circle";
 
+// var colorArray = [];
+
+function random(){
+  r = Math.floor(Math.random() * 255)
+  g = Math.floor(Math.random() * 255)
+  b = Math.floor(Math.random() * 255)
+  return [r, g, b]
+  alert("You clicked Random Color!")
+  // colorArray = [r, g, b]
+}
+
+// this function creates an infinite loop - be careful
+// function setColor (arr){
+//   r = arr[0]
+//   g = arr[1]
+//   b = arr[2]
+//   document.getElementById("red").textContent = arr[0];
+//   document.getElementById("green").textContent = g;
+//   document.getElementById("blue").textContent = b;
+// }
+
 //position tracking
 var posHistory = {
   maxRecords: 30,
