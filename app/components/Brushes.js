@@ -38,8 +38,15 @@ var brushes = {
     sprayPaint: {
         draw(curBrushSize = brushSize) {
             var maxDotSize = 0.2 * curBrushSize;
+            var angle = Math.random() * 2 * Math.PI // radians
+
+            var dist = Math.random() * curBrushSize;
+
+            var x_offset = Math.cos(angle) * dist;
+            var y_offset = Math.sin(angle) * dist;
+
             for (var i = 0; i < 10; i++) {
-                buffer.ellipse(mouseX + getRandomPos(curBrushSize).x, mouseY + getRandomPos(curBrushSize).y, maxDotSize);
+                buffer.ellipse(mouseX + x_offset, mouseY + y_offset, maxDotSize);
             }
         },
     }
