@@ -98,7 +98,7 @@ function draw() {
 
       // Test key
       case "q":
-        background(0, 0, 0, 10);
+        buffer.background(0, 0, 0, 10);
         break;
       default:
         console.log(`You just pressed ${key}`);

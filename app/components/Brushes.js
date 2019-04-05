@@ -1,41 +1,52 @@
 // Brushes
 var brushes = {
     select(brushName) {
-      currentBrush = brushName;
+        currentBrush = brushName;
     },
-  
+
     circle: {
-      draw(curBrushSize = brushSize) {
-        // ellipse(mouseX, mouseY, curBrushSize, curBrushSize);
-        buffer.ellipse(mouseX, mouseY, curBrushSize, curBrushSize);
-      }
+        draw(curBrushSize = brushSize) {
+            // ellipse(mouseX, mouseY, curBrushSize, curBrushSize);
+            buffer.ellipse(mouseX, mouseY, curBrushSize);
+        }
     },
-  
+
     square: {
-      draw(curBrushSize = brushSize) {
-        // rect(mouseX, mouseY, curBrushSize, curBrushSize);
-        buffer.rect(mouseX - curBrushSize / 2, mouseY - curBrushSize / 2, curBrushSize, curBrushSize);
-      }
+        draw(curBrushSize = brushSize) {
+            // rect(mouseX, mouseY, curBrushSize, curBrushSize);
+            buffer.rect(mouseX - curBrushSize / 2, mouseY - curBrushSize / 2, curBrushSize, curBrushSize);
+        }
     },
+
     triangle: {
-      draw(curBrushSize = brushSize) {
-        var distToCorner = 0.6 * curBrushSize;
-        // triangle(
-        buffer.triangle(
-          mouseX + 0,
-          mouseY - distToCorner,
-  
-          mouseX - distToCorner * Math.cos((30 * Math.PI) / 180),
-          mouseY + distToCorner * Math.sin((30 * Math.PI) / 180),
-  
-          mouseX + distToCorner * Math.cos((30 * Math.PI) / 180),
-          mouseY + distToCorner * Math.sin((30 * Math.PI) / 180)
-        );
-      }
+        draw(curBrushSize = brushSize) {
+            var distToCorner = 0.6 * curBrushSize;
+            // triangle(
+            buffer.triangle(
+                mouseX + 0,
+                mouseY - distToCorner,
+
+                mouseX - distToCorner * Math.cos((30 * Math.PI) / 180),
+                mouseY + distToCorner * Math.sin((30 * Math.PI) / 180),
+
+                mouseX + distToCorner * Math.cos((30 * Math.PI) / 180),
+                mouseY + distToCorner * Math.sin((30 * Math.PI) / 180)
+            );
+        }
     },
+
     sprayPaint: {
-      draw() {
-        ellipse(mouseX, mouseY, brushSize, brushSize);
-      }
+        draw(curBrushSize = brushSize) {
+            var maxDotSize = 0.2 * curBrushSize;
+            for (var i = 0; i < 10; i++) {
+                buffer.ellipse(mouseX + getRandomPos(curBrushSize).x, mouseY + getRandomPos(curBrushSize).y, maxDotSize);
+            }
+        },
     }
-  };
+};
+
+function getRandomPos(size) {
+    x = Math.random() * size
+    y = Math.random() * size
+    return {x, y}
+}
