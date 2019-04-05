@@ -12,6 +12,11 @@ body {
     display: inline-block;
 }
 
+#hex {
+    color: red;
+    display: none;
+}
+
 #colIndicator {
     height: 5px;
     width:100%;
@@ -30,7 +35,11 @@ body {
 }
 
 .toolbar:hover #colIndicator {
-    height: 10px;
+    height: 20px;
+}
+
+.toolbar:hover #hex {
+    display: inline;
 }
 
 .redCol {

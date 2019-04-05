@@ -13,6 +13,7 @@ function setup() {
   document.getElementById("colIndicator").style.background = getRGBColor();
   buffer = createGraphics(windowWidth, windowHeight);
   buffer.background(0, 0, 0, 0);
+  document.getElementById('hex').textContent = fullColorHex(r, g, b);
 }
 
 //draw function
