@@ -161,7 +161,7 @@ function draw() {
   fill(r, g, b);
   if (mouseIsPressed) {
     brushes[currentBrush].draw();
-
+  }
   // Record the mouse position, get the speed and calculate how much to reduce the brush size by
   posHistory.addPos(mouseX, mouseY);
   var scaleFactor = 1 - Math.min(posHistory.getSpeed() * 0.25 / brushSize, 1);
@@ -248,7 +248,7 @@ function draw() {
         console.log(`You just pressed ${key}`);
     }
   }
-}}
+}
 
 // Resizes canvas to the size of users window.
 function windowResized() {
