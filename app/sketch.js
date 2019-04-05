@@ -10,6 +10,9 @@ function randomColor() {
   r = Math.floor(Math.random() * 255)
   g = Math.floor(Math.random() * 255)
   b = Math.floor(Math.random() * 255)
+  document.getElementById("red").textContent = r;
+  document.getElementById("green").textContent = g;
+  document.getElementById("blue").textContent = b;
   document.getElementById("colIndicator").style.background = getCurrentColour();
 }
 
@@ -145,10 +148,16 @@ function reset() {
   document.getElementById("colIndicator").style.background = getCurrentColour();
 }
 
+// clean canvas
+function cleanScreen() {
+  buffer.clear();
+  background(0);
+}
+
 // initialises canvas
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background(120);
+  background(0);
   document.getElementById("colIndicator").style.background = getCurrentColour();
   buffer = createGraphics(windowWidth, windowHeight);
   buffer.background(0, 0, 0, 0);
@@ -172,25 +181,20 @@ function getCurrentColour() {
 
 //draw function
 function draw() {
-  buffer.stroke(0);
+  buffer.stroke(0, 0, 0);
   buffer.fill(r, g, b);
   image(buffer, 0, 0);
 
-  fill(r, g, b);
+  // Record the mouse position, get the speed and calculate how much to reduce the brush size by
+  posHistory.addPos(mouseX, mouseY);
+  var scaleFactor = 1 - Math.min(posHistory.getSpeed() * 0.25 / brushSize, 1);
+
   if (mouseIsPressed) {
-    brushes[currentBrush].draw();
-
-    // Record the mouse position, get the speed and calculate how much to reduce the brush size by
-    posHistory.addPos(mouseX, mouseY);
-    var scaleFactor = 1 - Math.min(posHistory.getSpeed() * 0.25 / brushSize, 1);
-
-    fill(r, g, b);
-    if (mouseIsPressed) {
-      velocityScaling ?
-        brushes[currentBrush].draw(brushSize * scaleFactor) :
-        brushes[currentBrush].draw();
-    }
-
+    velocityScaling ?
+      brushes[currentBrush].draw(brushSize * scaleFactor) :
+      brushes[currentBrush].draw();
+  }
+  
     if (keyIsPressed) {
       document.getElementById(
         "colIndicator"
