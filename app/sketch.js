@@ -4,8 +4,9 @@ var g = 0;
 var b = 0;
 var brushSize = 30;
 var currentBrush = "circle";
+var rgb = [r, g, b]
 
-function randomColor(){
+function randomColor() {
   r = Math.floor(Math.random() * 255)
   g = Math.floor(Math.random() * 255)
   b = Math.floor(Math.random() * 255)
@@ -15,37 +16,53 @@ function randomColor(){
   document.getElementById("colIndicator").style.background = getCurrentColour();
 }
 
+var rgbToHex = function (rgb) { 
+  var hex = Number(rgb).toString(16);
+  if (hex.length < 2) {
+       hex = "0" + hex;
+  }
+  return hex;
+};
+
+var fullColorHex = function(r,g,b) {   
+  var red = rgbToHex(r);
+  var green = rgbToHex(g);
+  var blue = rgbToHex(b);
+  return "#" + red+green+blue;
+};
+
+
 //position tracking
 var posHistory = {
   maxRecords: 30,
   records: [],
-  addPos(x, y){
-    this.records.unshift({x: Math.round(x), y: Math.round(y)});
-    if(this.records.length > this.maxRecords){
+  addPos(x, y) {
+    this.records.unshift({ x: Math.round(x), y: Math.round(y) });
+    if (this.records.length > this.maxRecords) {
       this.records.pop();
     }
   },
-  getDistBetweenTwoCoords(posA, posB){
+  getDistBetweenTwoCoords(posA, posB) {
     var horizontalDist = posB.x - posA.x;
-    var verticalDist =  posB.y - posA.y;
-    distance = Math.sqrt(horizontalDist**2 + verticalDist**2);
+    var verticalDist = posB.y - posA.y;
+    distance = Math.sqrt(horizontalDist ** 2 + verticalDist ** 2);
     return distance
   },
-  getTravelDistance(){
+  getTravelDistance() {
     var total = 0;
-    for(let i = 1; i < this.records.length; i++){
+    for (let i = 1; i < this.records.length; i++) {
       total += this.getDistBetweenTwoCoords(this.records[i], this.records[i - 1]);
     }
     return total;
   },
-  getSpeed(){
+  getSpeed() {
     return Math.round(this.getTravelDistance() / this.records.length)
   }
 }
 //toggle velocity scaling
 var velocityScaling = false;
-function keyPressed(){
-  if(keyCode === 83){
+function keyPressed() {
+  if (keyCode === 83) {
     velocityScaling = !velocityScaling;
   }
 }
@@ -146,10 +163,10 @@ function setup() {
   buffer.background(0, 0, 0, 0);
 }
 
-function shapes_visibility(){
+function shapes_visibility() {
   var shapes = document.getElementsByClassName('shapes');
-  for(let i = 0; i < shapes.length; i++){
-    if(shapes[i].classList.contains('hidden')){
+  for (let i = 0; i < shapes.length; i++) {
+    if (shapes[i].classList.contains('hidden')) {
       shapes[i].classList.remove('hidden');
     } else {
       shapes[i].classList.add('hidden');
@@ -177,80 +194,81 @@ function draw() {
       brushes[currentBrush].draw(brushSize * scaleFactor) :
       brushes[currentBrush].draw();
   }
+  
+    if (keyIsPressed) {
+      document.getElementById(
+        "colIndicator"
+      ).style.background = getCurrentColour();
+      switch (key) {
+        // RGB to add more of that colour, EFV to subtract
 
-  if (keyIsPressed) {
-    document.getElementById(
-      "colIndicator"
-    ).style.background = getCurrentColour();
-    switch (key) {
-      // RGB to add more of that colour, EFV to subtract
+        // Increase Red
+        case "r":
+          if (r < 255) {
+            r++;
+            document.getElementById("red").textContent = r;
+          }
+          break;
 
-      // Increase Red
-      case "r":
-        if (r < 255) {
-          r++;
-          document.getElementById("red").textContent = r;
-        }
-        break;
+        // Reduce Red
+        case "e":
+          if (r) {
+            r--;
+            document.getElementById("red").textContent = r;
+          }
+          break;
 
-      // Reduce Red
-      case "e":
-        if (r) {
-          r--;
-          document.getElementById("red").textContent = r;
-        }
-        break;
+        //Increase Green
+        case "g":
+          if (g < 255) {
+            g++;
+            document.getElementById("green").textContent = g;
+          }
+          break;
 
-      //Increase Green
-      case "g":
-        if (g < 255) {
-          g++;
-          document.getElementById("green").textContent = g;
-        }
-        break;
+        // Reduce Green
+        case "f":
+          if (g) {
+            g--;
+            document.getElementById("green").textContent = g;
+          }
+          break;
 
-      // Reduce Green
-      case "f":
-        if (g) {
-          g--;
-          document.getElementById("green").textContent = g;
-        }
-        break;
+        //Increase Blue
+        case "b":
+          if (b < 255) {
+            b++;
+            document.getElementById("blue").textContent = b;
+          }
+          break;
 
-      //Increase Blue
-      case "b":
-        if (b < 255) {
-          b++;
-          document.getElementById("blue").textContent = b;
-        }
-        break;
+        // Reduce Blue
+        case "v":
+          if (b) {
+            b--;
+            document.getElementById("blue").textContent = b;
+          }
+          break;
 
-      // Reduce Blue
-      case "v":
-        if (b) {
-          b--;
-          document.getElementById("blue").textContent = b;
-        }
-        break;
+        // I don't know how modifier keys work. Probably best not to use them anyway
 
-      // I don't know how modifier keys work. Probably best not to use them anyway
+        // Increase brush size
+        case "=":
+          plusBrush();
+          break;
 
-      // Increase brush size
-      case "=":
-        plusBrush();
-        break;
+        // Reduce brush size
+        case "-":
+          minusBrush();
+          break;
 
-      // Reduce brush size
-      case "-":
-        minusBrush();
-        break;
-
-      // Test key
-      case "q":
-        background(0, 0, 0, 10);
-        break;
-      default:
-        console.log(`You just pressed ${key}`);
+        // Test key
+        case "q":
+          background(0, 0, 0, 10);
+          break;
+        default:
+          console.log(`You just pressed ${key}`);
+      }
     }
   }
 }
