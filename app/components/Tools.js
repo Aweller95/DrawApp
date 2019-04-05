@@ -6,6 +6,7 @@ function randomColor() {
     document.getElementById("green").textContent = g;
     document.getElementById("blue").textContent = b;
     document.getElementById("colIndicator").style.background = getRGBColor();
+    displayHex();
   }
 
   // reduce brush size

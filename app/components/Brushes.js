@@ -40,14 +40,12 @@ var brushes = {
             var maxDotSize = 0.2 * curBrushSize;
             var angle = Math.random() * 2 * Math.PI // radians
 
-            var dist = Math.random() * curBrushSize;
+            var dist = Math.random() * curBrushSize/2;
 
             var x_offset = Math.cos(angle) * dist;
             var y_offset = Math.sin(angle) * dist;
 
-            for (var i = 0; i < 10; i++) {
-                buffer.ellipse(mouseX + x_offset, mouseY + y_offset, maxDotSize);
-            }
+            buffer.ellipse(mouseX + x_offset, mouseY + y_offset, maxDotSize);
         },
     }
 };

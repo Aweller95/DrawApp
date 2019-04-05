@@ -23,7 +23,7 @@ function draw() {
 
   // Record the mouse position, get the speed and calculate how much to reduce the brush size by
   posHistory.addPos(mouseX, mouseY);
-  var scaleFactor = 1 - Math.min((posHistory.getSpeed() * 0.25) / brushSize, 1);
+  var scaleFactor = 1 - Math.min((posHistory.getSpeed() * 0.5) / brushSize, 1);
 
   if (mouseIsPressed) {
     velocityScaling
@@ -43,6 +43,7 @@ function draw() {
         if (r < 255) {
           r++;
           document.getElementById("red").textContent = r;
+          displayHex();
         }
         break;
 
@@ -51,6 +52,7 @@ function draw() {
         if (r) {
           r--;
           document.getElementById("red").textContent = r;
+          displayHex();
         }
         break;
 
@@ -59,6 +61,7 @@ function draw() {
         if (g < 255) {
           g++;
           document.getElementById("green").textContent = g;
+          displayHex();
         }
         break;
 
@@ -67,6 +70,7 @@ function draw() {
         if (g) {
           g--;
           document.getElementById("green").textContent = g;
+          displayHex();
         }
         break;
 
@@ -75,6 +79,7 @@ function draw() {
         if (b < 255) {
           b++;
           document.getElementById("blue").textContent = b;
+          displayHex();
         }
         break;
 
@@ -83,6 +88,7 @@ function draw() {
         if (b) {
           b--;
           document.getElementById("blue").textContent = b;
+          displayHex();
         }
         break;
 
