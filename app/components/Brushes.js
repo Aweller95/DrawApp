@@ -42,19 +42,17 @@ var brushes = {
 
   sprayPaint: {
     draw(curBrushSize = brushSize) {
+      var angle = Math.random() * 2 * Math.PI; // radians
       var dist = (Math.random() * curBrushSize) / 2;
-      var scaleFactor = 1 - (dist / curBrushSize);
-      var scaledDotSize = maxDotSize * scaleFactor;
-
-      var maxDotSize = 0.2 * curBrushSize;
+      var radialScaleFactor = 1 - (dist / curBrushSize);
+      
+      var maxDotSize = Math.round(0.2 * curBrushSize);
+      var scaledDotSize = Math.round(maxDotSize * radialScaleFactor);
       
       var x_offset = Math.cos(angle) * dist;
       var y_offset = Math.sin(angle) * dist;
 
-      var angle = Math.random() * 2 * Math.PI; // radians
-
-      console.log(maxDotSize);
-      buffer.ellipse(mouseX + x_offset, mouseY + y_offset, maxDotSize);
+      buffer.ellipse(mouseX + x_offset, mouseY + y_offset, scaledDotSize);
     }
   }
 };
