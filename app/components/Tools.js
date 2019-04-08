@@ -9,6 +9,12 @@ function randomColor() {
   displayHex();
 }
 
+var colDict = {
+  r: 'red',
+  g: 'green',
+  b: 'blue'
+}
+
 function modifyColVal(col, type){
   if(type == 'add'){
     if(window[col] < 255){
@@ -21,6 +27,24 @@ function modifyColVal(col, type){
       document.getElementById(colDict[col]).textContent = window[col];
     }
   }
+  displayHex();
+}
+
+function convertHexToRGB(string) {
+  string = escape(string);
+  string = string.split(/%/).filter(e=>e);
+  string = string.map(e => +("0x"+e)); 
+  return +string.join("");
+}
+
+function setRGBFromHex(hexCode){
+  r = Number(convertHexToRGB(hexCode.substring(1, 3)));
+  g = Number(convertHexToRGB(hexCode.substring(3, 5)));
+  b = Number(convertHexToRGB(hexCode.substring(5, 7)));
+  document.getElementById(colDict['r']).textContent = r;
+  document.getElementById(colDict['g']).textContent = g;
+  document.getElementById(colDict['b']).textContent = b;
+  document.getElementById("colIndicator").style.background = getRGBColor();
   displayHex();
 }
 

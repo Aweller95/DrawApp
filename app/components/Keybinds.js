@@ -1,24 +1,3 @@
-var colDict = {
-  r: 'red',
-  g: 'green',
-  b: 'blue'
-}
-
-function modifyColVal(col, type){
-  if(type == 'add'){
-    if(window[col] < 255){
-      window[col]++;
-      document.getElementById(colDict[col]).textContent = window[col];
-    }
-  } else {
-    if(window[col]){
-      window[col]--;
-      document.getElementById(colDict[col]).textContent = window[col];
-    }
-  }
-  displayHex();
-}
-
 const keybinds = {
   r: function(){
     modifyColVal('r', 'add');
