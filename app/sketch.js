@@ -33,83 +33,8 @@ function draw() {
   }
 
   if (keyIsPressed) {
-    document.getElementById(
-      "colIndicator"
-    ).style.background = getRGBColor();
-    switch (key) {
-      // RGB to add more of that colour, EFV to subtract
-
-      // Increase Red
-      case "r":
-        if (r < 255) {
-          r++;
-          document.getElementById("red").textContent = r;
-          displayHex();
-        }
-        break;
-
-      // Reduce Red
-      case "e":
-        if (r) {
-          r--;
-          document.getElementById("red").textContent = r;
-          displayHex();
-        }
-        break;
-
-      //Increase Green
-      case "g":
-        if (g < 255) {
-          g++;
-          document.getElementById("green").textContent = g;
-          displayHex();
-        }
-        break;
-
-      // Reduce Green
-      case "f":
-        if (g) {
-          g--;
-          document.getElementById("green").textContent = g;
-          displayHex();
-        }
-        break;
-
-      //Increase Blue
-      case "b":
-        if (b < 255) {
-          b++;
-          document.getElementById("blue").textContent = b;
-          displayHex();
-        }
-        break;
-
-      // Reduce Blue
-      case "v":
-        if (b) {
-          b--;
-          document.getElementById("blue").textContent = b;
-          displayHex();
-        }
-        break;
-
-      // Increase brush size
-      case "=":
-        plusBrush();
-        break;
-
-      // Reduce brush size
-      case "-":
-        minusBrush();
-        break;
-
-      // Test key
-      case "q":
-        buffer.background(0, 0, 0, 10);
-        break;
-      default:
-        console.log(`You just pressed ${key}`);
-    }
+    document.getElementById("colIndicator").style.background = getRGBColor();
+    keybinds[key]();
   }
 }
 
