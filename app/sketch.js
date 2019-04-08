@@ -39,7 +39,11 @@ function draw() {
 
   if (keyIsPressed) {
     document.getElementById("colIndicator").style.background = getRGBColor();
-    keybinds[key]();
+    try {
+      keybinds[key]();
+    } catch (error) {
+      console.log(`${key} doesn't do anything`);
+    }
   }
 }
 

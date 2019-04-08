@@ -6,11 +6,15 @@ var colDict = {
 
 function modifyColVal(col, type){
   if(type == 'add'){
-    window[col]++;
-    document.getElementById(colDict[col]).textContent = window[col];
+    if(window[col] < 255){
+      window[col]++;
+      document.getElementById(colDict[col]).textContent = window[col];
+    }
   } else {
-    window[col]--;
-    document.getElementById(colDict[col]).textContent = window[col];
+    if(window[col]){
+      window[col]--;
+      document.getElementById(colDict[col]).textContent = window[col];
+    }
   }
   displayHex();
 }
