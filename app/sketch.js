@@ -5,14 +5,16 @@ var b = 0;
 var brushSize = 30;
 var currentBrush = "circle";
 var rgb = [r, g, b];
+var toolbar = document.getElementsByClassName('toolbar')[0];
+var toolbarHeight = window.getComputedStyle(toolbar).getPropertyValue('height').replace('px', '')
 var partyMode = false;
 
 // initialises canvas
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth, windowHeight - toolbarHeight);
   background(0);
   document.getElementById("colIndicator").style.background = getRGBColor();
-  buffer = createGraphics(windowWidth, windowHeight);
+  buffer = createGraphics(windowWidth, windowHeight - toolbarHeight);
   buffer.background(0, 0, 0, 0);
   document.getElementById('hex').textContent = fullColorHex(r, g, b);
 }
@@ -43,8 +45,8 @@ function draw() {
 
 // Resizes canvas to the size of users window.
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-  newBuffer = createGraphics(windowWidth, windowHeight);
+  resizeCanvas(windowWidth, windowHeight - toolbarHeight);
+  newBuffer = createGraphics(windowWidth, windowHeight - toolbarHeight);
   newBuffer.image(buffer, 0, 0, buffer.width, buffer.height);
   buffer = newBuffer;
   background(0);
