@@ -63,3 +63,9 @@ function partyModeCheck() {
 function togglePartyMode() {
   partyMode = !partyMode;
 }
+
+// Fill canvas with current col
+function fillCanvas(){
+  background(r, g, b);
+  buffer.background(r, g, b);
+}

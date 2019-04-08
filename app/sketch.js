@@ -49,5 +49,4 @@ function windowResized() {
   newBuffer = createGraphics(windowWidth, windowHeight - toolbarHeight);
   newBuffer.image(buffer, 0, 0, buffer.width, buffer.height);
   buffer = newBuffer;
-  background(0);
 }
