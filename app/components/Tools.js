@@ -9,6 +9,21 @@ function randomColor() {
   displayHex();
 }
 
+function modifyColVal(col, type){
+  if(type == 'add'){
+    if(window[col] < 255){
+      window[col]++;
+      document.getElementById(colDict[col]).textContent = window[col];
+    }
+  } else {
+    if(window[col]){
+      window[col]--;
+      document.getElementById(colDict[col]).textContent = window[col];
+    }
+  }
+  displayHex();
+}
+
 // reduce brush size
 function minusBrush() {
   if (brushSize) {
