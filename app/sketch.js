@@ -26,7 +26,7 @@ function draw() {
   posHistory.addPos(mouseX, mouseY);
   var scaleFactor = 1 - Math.min((posHistory.getSpeed() * 0.5) / brushSize, 1);
 
-  if (mouseIsPressed) {
+  if (mouseIsPressed && mouseY >= 0) {
     velocityScaling
       ? brushes[currentBrush].draw(brushSize * scaleFactor)
       : brushes[currentBrush].draw();
