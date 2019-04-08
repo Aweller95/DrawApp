@@ -53,7 +53,7 @@ var brushes = {
       var y_offset = Math.sin(angle) * dist;
 
       buffer.ellipse(mouseX + x_offset, mouseY + y_offset, scaledDotSize);
-    }
+    },
   }
 };
 

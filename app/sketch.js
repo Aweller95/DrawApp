@@ -16,6 +16,8 @@ function setup() {
   document.getElementById('hex').textContent = fullColorHex(r, g, b);
 }
 
+var randCol = false;
+
 //draw function
 function draw() {
   buffer.stroke(0, 0, 0);
@@ -25,8 +27,11 @@ function draw() {
   // Record the mouse position, get the speed and calculate how much to reduce the brush size by
   posHistory.addPos(mouseX, mouseY);
   var scaleFactor = 1 - Math.min((posHistory.getSpeed() * 0.5) / brushSize, 1);
-
+  
   if (mouseIsPressed && mouseY >= 0) {
+    if(randCol){
+      buffer.fill(Math.random() * 255, Math.random() * 255, Math.random() * 255);
+    }
     velocityScaling
       ? brushes[currentBrush].draw(brushSize * scaleFactor)
       : brushes[currentBrush].draw();
