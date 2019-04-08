@@ -5,6 +5,7 @@ var b = 0;
 var brushSize = 30;
 var currentBrush = "circle";
 var rgb = [r, g, b];
+var partyMode = false;
 
 // initialises canvas
 function setup() {
@@ -16,7 +17,6 @@ function setup() {
   document.getElementById('hex').textContent = fullColorHex(r, g, b);
 }
 
-var randCol = false;
 
 //draw function
 function draw() {
@@ -29,9 +29,7 @@ function draw() {
   var scaleFactor = 1 - Math.min((posHistory.getSpeed() * 0.5) / brushSize, 1);
   
   if (mouseIsPressed && mouseY >= 0) {
-    if(randCol){
-      buffer.fill(Math.random() * 255, Math.random() * 255, Math.random() * 255);
-    }
+    partyModeCheck();
     velocityScaling
       ? brushes[currentBrush].draw(brushSize * scaleFactor)
       : brushes[currentBrush].draw();
