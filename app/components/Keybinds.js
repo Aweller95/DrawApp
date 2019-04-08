@@ -42,5 +42,11 @@ const keybinds = {
   },
   q: function(){
     buffer.background(0, 0, 0, 10);
-  }
+  },
+  ' ': function(){
+    togglePartyMode()
+  },
+  a: function(){
+    randomColor();
+  },
 }
