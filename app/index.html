@@ -21,7 +21,11 @@
     </div>
 
     <div class="tool">
-      <button onclick="reset()">Reset</button>
+      <button id="resetButton" onclick="reset()">Reset</button>
+      <div class="speech-bubble">
+        <h1>Hello</h1>
+        <h2>Hello 2</h2>
+      </div>
     </div>
 
     <div class="tool">
@@ -55,7 +59,6 @@
     <div class="tool">
 
         <button onclick="shapes_visibility('shapes')">Brush shapes</button>
-        <button class="shapes hidden" onclick="brushes.select('square')" id="square">■</button>
         <button class="shapes hidden" onclick="brushes.select('triangle')" id="triangle">▲</button>
         <button class="shapes hidden" onclick="brushes.select('circle')" id="circle">●</button>
         <button class="shapes hidden" onclick="brushes.select('square')" id="square">■</button>

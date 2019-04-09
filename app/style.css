@@ -64,3 +64,23 @@ body {
     min-width: 50px;
     margin-left: 1rem;
 }
+
+#resetButton:hover .speech-bubble {
+	position: relative;
+	background: #00d394;
+	border-radius: .4em;
+}
+
+#resetButton:hover .speech-bubble:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 36px solid transparent;
+	border-bottom-color: #00d394;
+	border-top: 0;
+	margin-left: -36px;
+	margin-top: -36px;
+}
