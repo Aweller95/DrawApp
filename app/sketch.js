@@ -19,7 +19,6 @@ function setup() {
   document.getElementById('hex').textContent = fullColorHex(r, g, b);
 }
 
-
 //draw function
 function draw() {
   buffer.stroke(0, 0, 0);
