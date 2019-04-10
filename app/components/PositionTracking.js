@@ -12,7 +12,7 @@ var posHistory = {
       var horizontalDist = posB.x - posA.x;
       var verticalDist = posB.y - posA.y;
       distance = Math.sqrt(horizontalDist ** 2 + verticalDist ** 2);
-      return distance;
+      return {distance, vector: {x: horizontalDist, y: verticalDist}};
     },
     getTravelDistance() {
       var total = 0;
@@ -20,12 +20,15 @@ var posHistory = {
         total += this.getDistBetweenTwoCoords(
           this.records[i],
           this.records[i - 1]
-        );
+        ).distance;
       }
       return total;
     },
     getSpeed() {
       return Math.round(this.getTravelDistance() / this.records.length);
+    },
+    getVector() {
+      return this.getDistBetweenTwoCoords(this.records[0], this.records[this.records.length - 1]).vector;
     }
   };
   //toggle velocity scaling
