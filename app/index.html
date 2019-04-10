@@ -21,44 +21,47 @@
     </div>
 
     <div class="tool">
-      <button id="resetButton" onclick="reset()">Reset</button>
-      <div class="speech-bubble">
-        <h1>Hello</h1>
-        <h2>Hello 2</h2>
-      </div>
+      <button class="toolButton" onclick="reset()">Reset</button>
+      <p>Resets your currently selected color. (TBC)</p>
     </div>
 
     <div class="tool">
-      <button onclick="cleanScreen()">Clean canvas</button>
+      <button class="toolButton" onclick="cleanScreen()">Clean canvas</button>
+      <p>Clears all drawings on the canvas. (TBC)</p>
      </div>
     
     <div class="tool">
-      <button onclick="randomColor()">Random Color</button>
+      <button class="toolButton" onclick="randomColor()">Random Color</button>
+      <p>Selects a random color. (TBC)</p>
     </div>
 
     <div class="tool">
-      <button onclick="togglePartyMode()">Party Mode</button>
+      <button class="toolButton" onclick="togglePartyMode()">Party Mode</button>
+      <p>Toggles selecting a random color every frame. (TBC)</p>
     </div>
     
     <div class="tool">
-      <button onclick="fillCanvas()">Fill BG</button>
+      <button class="toolButton" onclick="fillCanvas()">Fill BG</button>
+      <p>Changes the color of the canvas to the selected color. (TBC)</p>
     </div>
 
     <div class="tool">
-      <button onclick="saveCanvas()">Save Canvas</button>
+      <button class="toolButton" onclick="saveCanvas()">Save Canvas</button>
+      <p>Saves the current canvas to your computer in .png format.</p>
     </div>
 
     <div class="tool">
       <p>Brush Size: <span id="brushSizeVal">30</span></p>
-      <button onclick="plusBrush()">+</button>
-      <button onclick="minusBrush()">-</button>
+      <button class="toolButton" onclick="plusBrush()">+</button>
+      <button class="toolButton" onclick="minusBrush()">-</button>
+      <p>Increase or decrease brush size. (- or +)</p>
     </div>
 
     <!--creates two buttons for the shape of the brush-->
     
     <div class="tool">
-
-        <button onclick="shapes_visibility('shapes')">Brush shapes</button>
+        <button class="toolButton" onclick="shapes_visibility('shapes')">Brush shapes</button>
+        <p>Click to show a list of brush shapes.</p>
         <button class="shapes hidden" onclick="brushes.select('triangle')" id="triangle">▲</button>
         <button class="shapes hidden" onclick="brushes.select('circle')" id="circle">●</button>
         <button class="shapes hidden" onclick="brushes.select('square')" id="square">■</button>

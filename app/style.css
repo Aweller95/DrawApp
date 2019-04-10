@@ -65,22 +65,22 @@ body {
     margin-left: 1rem;
 }
 
-#resetButton:hover .speech-bubble {
-	position: relative;
+.toolButton + p{
+    visibility: hidden;
+    position: absolute;
 	background: #00d394;
-	border-radius: .4em;
-}
-
-#resetButton:hover .speech-bubble:after {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 50%;
+    border-radius: .4em;
+    content: '';
+    top: 130%;
+	left: -30%;
 	width: 0;
 	height: 0;
 	border: 36px solid transparent;
 	border-bottom-color: #00d394;
-	border-top: 0;
-	margin-left: -36px;
-	margin-top: -36px;
+    border-top: 0;
+    margin: 0 auto;
+}
+
+.tool:hover p{
+    visibility: visible;
 }
