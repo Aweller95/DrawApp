@@ -27,7 +27,6 @@ function draw() {
 
   // Record the mouse position, get the speed and calculate how much to reduce the brush size by
   posHistory.addPos(mouseX, mouseY);
-  // console.log(posHistory.getVector());
   var scaleFactor = 1 - Math.min((posHistory.getSpeed() * 0.5) / brushSize, 1);
   
   if (mouseIsPressed && mouseY >= 0) {
