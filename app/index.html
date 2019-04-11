@@ -38,9 +38,11 @@
 
     <div class="tool">
       <!-- <button class="toolButton" onclick="togglePartyMode()">Party Mode</button> -->
-      <input type="checkbox" name="partyMode" id="partyMode" onchange="partyMode = this.checked" class="toolButton">
-      <label for="partyMode">Party Mode</label>
-      <p>Toggles selecting a random color every frame. (TBC)</p>
+      <label class="switch" for="partyMode">
+        <input type="checkbox"  name="partyMode" id="partyMode" onchange="partyMode = this.checked" class="toolButton">
+        <p>Toggles selecting a random color every frame. (TBC)</p>
+        <span class="slider"></span>
+      </label>
     </div>
     
     <div class="tool">
