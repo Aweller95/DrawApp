@@ -1,101 +1,159 @@
 body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
 .toolbar {
-    position:relative;
-    margin: 0.3rem;
-    padding-bottom: 16px;
+  position:relative;
+  margin: 0.3rem;
+  padding-bottom: 16px;
 }
 
 .toolbar p {
-    display: inline-block;
-    margin-bottom: 0;
+  display: inline-block;
+  margin-bottom: 0;
 }
 
 #hex {
-    color: red;
-    display: none;
+  color: red;
+  display: none;
 }
 
 #colIndicator {
-    height: 5px;
-    width:100%;
-    position:absolute;
-    top: 35px;
-    border: 1px solid rgb(216, 216, 216);
-    transition: height .15s;    
+  height: 5px;
+  width:100%;
+  position:absolute;
+  top: 35px;
+  border: 1px solid rgb(216, 216, 216);
+  transition: height .15s;  
 }
 
 #colSelector p {
-    width:35px;
+  width:35px;
 }
 
 #colSelector p:nth-child(3){
-    width: 50px;
+  width: 50px;
 }
 
 .toolbar:hover #colIndicator {
-    height: 20px;
+  height: 20px;
 }
 
 .toolbar:hover #hex {
-    display: inline;
+  display: inline;
 }
 
 .redCol {
-    color: red;
+  color: red;
 }
 
 .blueCol {
-    color: blue;
+  color: blue;
 }   
 
 .greenCol {
-    color: green;
+  color: green;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 .tool {
-    position:relative;
-    display: inline-block;
-    min-width: 50px;
-    margin-left: 1rem;
+  position:relative;
+  display: inline-block;
+  min-width: 50px;
+  margin-left: 1rem;
 }
 
 .toolButton + p, .toolButton + label + p{
-    visibility: hidden;
-    font-size: 0.75rem;
-    white-space: nowrap;
-    position: absolute;
+  visibility: hidden;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  position: absolute;
 	background: #00d394;
-    border-radius: .4em;
-    content: '';
-    top: 100%;
+  border-radius: .4em;
+  content: '';
+  top: 100%;
 	left: 0;
-    border-bottom-color: #00d394;
-    padding: 8px;
-    border-top: 0;
-    margin: 0 auto;
-    margin-top: 6px;
+  border-bottom-color: #00d394;
+  padding: 8px;
+  border-top: 0;
+  margin: 0 auto;
+  margin-top: 6px;
 }
 .toolButton + p:after, .toolButton + label + p:after {
-    content:'';
-    position:absolute;
-    top:-7px;
-    left:2px;
-    height:0;
-    width:0;
-    border-bottom:15px solid #00d394;
-    border-right:15px solid transparent;
-    border-left:15px solid transparent;
-    
+  content:'';
+  position:absolute;
+  top:-7px;
+  left:2px;
+  height:0;
+  width:0;
+  border-bottom:15px solid #00d394;
+  border-right:15px solid transparent;
+  border-left:15px solid transparent;
+  
 }
 
 .tool:hover p{
-    visibility: visible;
+  visibility: visible;
+}
+
+.switch
+{
+    width: 50px;
+    height: 30px;
+    top: 11px;
+    position: relative;
+    display:inline-block;
+}
+
+.switch input
+{
+    display: none;
+}
+
+.slider
+{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    cursor: pointer;
+    background-color: gray;
+    border-radius: 30px;
+
+}
+
+.slider:before
+{
+
+  position: absolute;
+  background-color: #fff;
+  height: 20px;
+  width: 20px;
+  content: "";
+  left: 5px;
+  bottom: 5px;
+  border-radius: 50%;
+  transition: ease-in-out .5s;
+}
+
+input:checked + p + .slider:after
+{
+  transition: all .5s;
+  left: 30%;
+}
+
+input:checked + p + .slider
+{
+  background-color: blue;
+
+}
+
+input:checked + p + .slider:before
+{
+  transform: translateX(20px);
 }
